@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Total Donors</h5>
+        <p class="display-6">{{ donor_count }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Total Requests</h5>
+        <p class="display-6">{{ request_count }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4 shadow-sm">
+  <div class="card-body">
+    <h5>Inventory Overview</h5>
+    <table class="table">
+      <thead><tr><th>Blood Group</th><th>Units</th></tr></thead>
+      <tbody>
+      {% for row in inventory_rows %}
+        <tr><td>{{ row["blood_group"] }}</td><td>{{ row["units"] }}</td></tr>
+      {% else %}
+        <tr><td colspan="2">No inventory added yet.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

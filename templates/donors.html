@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Add Donor</h5>
+        <form method="post">
+          <input class="form-control mb-2" name="name" placeholder="Name" required>
+          <input class="form-control mb-2" name="blood_group" placeholder="Blood Group" required>
+          <input class="form-control mb-2" name="phone" placeholder="Phone" required>
+          <button class="btn btn-danger">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Donors</h5>
+        <table class="table">
+          <thead><tr><th>ID</th><th>Name</th><th>Blood Group</th><th>Phone</th></tr></thead>
+          <tbody>
+          {% for donor in donors %}
+            <tr>
+              <td>{{ donor["id"] }}</td>
+              <td>{{ donor["name"] }}</td>
+              <td>{{ donor["blood_group"] }}</td>
+              <td>{{ donor["phone"] }}</td>
+            </tr>
+          {% else %}
+            <tr><td colspan="4">No donors added yet.</td></tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

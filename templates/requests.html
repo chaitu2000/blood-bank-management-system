@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Create Request</h5>
+        <form method="post">
+          <input class="form-control mb-2" name="hospital_name" placeholder="Hospital Name" required>
+          <input class="form-control mb-2" name="blood_group" placeholder="Blood Group" required>
+          <input class="form-control mb-2" name="units_needed" type="number" placeholder="Units Needed" required>
+          <button class="btn btn-danger">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Requests</h5>
+        <table class="table">
+          <thead><tr><th>ID</th><th>Hospital</th><th>Blood Group</th><th>Units</th><th>Status</th></tr></thead>
+          <tbody>
+          {% for row in requests %}
+            <tr>
+              <td>{{ row["id"] }}</td>
+              <td>{{ row["hospital_name"] }}</td>
+              <td>{{ row["blood_group"] }}</td>
+              <td>{{ row["units_needed"] }}</td>
+              <td>{{ row["status"] }}</td>
+            </tr>
+          {% else %}
+            <tr><td colspan="5">No requests created yet.</td></tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

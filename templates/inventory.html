@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Add Inventory</h5>
+        <form method="post">
+          <input class="form-control mb-2" name="blood_group" placeholder="Blood Group" required>
+          <input class="form-control mb-2" name="units" type="number" placeholder="Units" required>
+          <button class="btn btn-danger">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Inventory</h5>
+        <table class="table">
+          <thead><tr><th>ID</th><th>Blood Group</th><th>Units</th></tr></thead>
+          <tbody>
+          {% for row in inventory %}
+            <tr>
+              <td>{{ row["id"] }}</td>
+              <td>{{ row["blood_group"] }}</td>
+              <td>{{ row["units"] }}</td>
+            </tr>
+          {% else %}
+            <tr><td colspan="3">No inventory added yet.</td></tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
